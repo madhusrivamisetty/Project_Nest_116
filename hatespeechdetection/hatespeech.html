@@ -1,0 +1,40 @@
+ Importing necessary libraries
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import LinearSVC
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+
+# Sample hate speech dataset
+data = {
+    'text': ["I hate you!", "Go back to your country!", "You are worthless!", "I love you.", "Have a nice day!"],
+    'label': [1, 1, 1, 0, 0]  # 1 for hate speech, 0 for non-hate speech
+}
+
+df = pd.DataFrame(data)
+
+# Splitting the data into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(df['text'], df['label'], test_size=0.2, random_state=42)
+
+# Creating a pipeline with TF-IDF vectorizer and LinearSVC classifier
+model = Pipeline([
+    ('tfidf', TfidfVectorizer()),
+    ('clf', LinearSVC())
+])
+
+# Training the model
+model.fit(X_train, y_train)
+
+# Testing the model
+predicted = model.predict(X_test)
+
+# Custom message
+custom_message = "You can't use these words, these are hurtful."
+
+# Predicting the response
+response = model.predict([custom_message])[0]
+
+# Mapping prediction to output
+output = "It's a non-hate speech." if response == 0 else "It's a hate speech."
+
+print(output)

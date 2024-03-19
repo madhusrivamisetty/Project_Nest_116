@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Prediction</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            position: absolute;
+            top: 50px; /* Adjust this value for vertical positioning */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            width: 100%; /* Adjust this value if needed */
+        }
+
+        .prediction-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .prediction-submit {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://researchoutreach.org/wp-content/uploads/2020/02/shutterstock_1488795377.jpg" alt="Image 1">
+        <div class="content">
+            <h1>HATE SPEECH DETECTION</h1>
+            <form action="/predict" method="post">
+                <input type="text" class="prediction-input" name="text" placeholder="Enter tweet prediction">
+                <br>
+                <input type="submit" value="Predict" class="prediction-submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
